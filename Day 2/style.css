@@ -1,0 +1,53 @@
+body {
+  background: #f0f2f5;
+  font-family: "segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  width: 300px;
+}
+
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin: 10px 0;
+}
+
+.card p {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.socials a {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.socials a:hover {
+  color: #0077b5; /* LinkedIn blue */
+}
+
+/* Responsive */
+@media screen and (max-width: 400px) {
+  .card {
+    width: 90%;
+    padding: 20px;
+  }
+}
