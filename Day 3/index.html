@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JS Image Gallery</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Image Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>My JavaScript Image Gallery</h1>
+    <div class="gallery">
+      <img src="./image/img 1.jpg" alt="Image 1" />
+      <img src="./image/img 2.JPG" alt="Image 2" />
+      <img src="./image/img 3.JPG" alt="Image 3" />
+      <img src="./image/img 4.jpeg" alt="Image 4" />
+    </div>
 
-  <h1>My JavaScript Image Gallery</h1>
-  <div class="gallery">
-    <img src="https://via.placeholder.com/150" alt="Image 1" />
-    <img src="https://via.placeholder.com/150" alt="Image 2" />
-    <img src="https://via.placeholder.com/150" alt="Image 3" />
-    <img src="https://via.placeholder.com/150" alt="Image 4" />
-  </div>
+    <!-- Popup -->
+    <div class="popup" id="popup">
+      <span class="close" id="closeBtn">&times;</span>
+      <img src="" alt="Large Image" id="popupImg" />
+    </div>
 
-  <!-- Popup -->
-  <div class="popup" id="popup">
-    <span class="close" id="closeBtn">&times;</span>
-    <img src="" alt="Large Image" id="popupImg" />
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
