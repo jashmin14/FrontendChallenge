@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pricing Toggle</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Our Pricing</h1>
-    <div class="toggle">
-      <span>Monthly</span>
-      <label class="switch">
-        <input type="checkbox" id="toggleSwitch" />
-        <span class="slider"></span>
-      </label>
-      <span>Yearly</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Toggle</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pricing</h1>
+      <div class="toggle">
+        <span>Monthly</span>
+        <label class="switch">
+          <input type="checkbox" id="toggleSwitch" />
+          <span class="slider"></span>
+        </label>
+        <span>Yearly</span>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h2>Basic</h2>
+          <p class="price" data-monthly="10" data-yearly="100">$10/mo</p>
+          <ul>
+            <li>10 GB Storage</li>
+            <li>Email Support</li>
+            <li>Access to Forum</li>
+          </ul>
+          <button>Select</button>
+        </div>
+
+        <div class="card">
+          <h2>Standard</h2>
+          <p class="price" data-monthly="20" data-yearly="200">$20/mo</p>
+          <ul>
+            <li>50 GB Storage</li>
+            <li>Priority Support</li>
+            <li>Weekly Reports</li>
+          </ul>
+          <button>Select</button>
+        </div>
+
+        <div class="card">
+          <h2>Premium</h2>
+          <p class="price" data-monthly="30" data-yearly="300">$30/mo</p>
+          <ul>
+            <li>150 GB Storage</li>
+            <li>24/7 Support</li>
+            <li>Daily Analytics</li>
+          </ul>
+          <button>Select</button>
+        </div>
+      </div>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <h2>Basic</h2>
-        <p class="price" data-monthly="10" data-yearly="100">$10/mo</p>
-        <ul>
-          <li>10 GB Storage</li>
-          <li>Email Support</li>
-          <li>Access to Forum</li>
-        </ul>
-        <button>Select</button>
-      </div>
-
-      <div class="card">
-        <h2>Standard</h2>
-        <p class="price" data-monthly="20" data-yearly="200">$20/mo</p>
-        <ul>
-          <li>50 GB Storage</li>
-          <li>Priority Support</li>
-          <li>Weekly Reports</li>
-        </ul>
-        <button>Select</button>
-      </div>
-
-      <div class="card">
-        <h2>Premium</h2>
-        <p class="price" data-monthly="30" data-yearly="300">$30/mo</p>
-        <ul>
-          <li>150 GB Storage</li>
-          <li>24/7 Support</li>
-          <li>Daily Analytics</li>
-        </ul>
-        <button>Select</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
