@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Day 20 - Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Quiz Champ</h1>
+      <div class="meta">
+        <div id="timer">Time: <span id="time">60</span>s</div>
+        <button id="viewScores" class="link-btn">View High Scores</button>
+      </div>
+    </header>
+
+    <section id="startScreen" class="card center">
+      <h2>Ready to test your knowledge?</h2>
+      <p>Try to answer as many questions correctly as you can before time runs out.</p>
+      <div class="controls">
+        <label>
+          <span>Time (sec):</span>
+          <input id="startTime" type="number" min="10" max="300" value="60">
+        </label>
+        <button id="startBtn" class="primary">Start Quiz</button>
+      </div>
+    </section>
+
+    <section id="quizScreen" class="card hidden">
+      <h2 id="questionText">Question</h2>
+      <ul id="choices" class="choices"></ul>
+      <div id="feedback" class="feedback"></div>
+      <div class="controls">
+        <button id="nextBtn" class="primary hidden">Next</button>
+      </div>
+    </section>
+
+    <section id="endScreen" class="card hidden">
+      <h2>All done!</h2>
+      <p>Your final score is <strong id="finalScore">0</strong>.</p>
+      <div class="controls">
+        <input id="initials" type="text" maxlength="3" placeholder="Your initials (max 3)">
+        <button id="saveScoreBtn" class="primary">Save Score</button>
+      </div>
+      <button id="playAgain" class="link-btn">Play Again</button>
+    </section>
+
+    <section id="scoresScreen" class="card hidden">
+      <h2>High Scores</h2>
+      <ol id="highScoresList"></ol>
+      <div class="controls">
+        <button id="clearScores" class="danger">Clear Scores</button>
+        <button id="backBtn" class="link-btn">Back</button>
+      </div>
+    </section>
+
+    <footer class="attribution">Day 20 • Interactive Quiz App</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
