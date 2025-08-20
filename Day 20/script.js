@@ -1,34 +1,24 @@
 // Simple quiz app with timer and localStorage high scores
 
-// QUESTIONS: add or edit as you like
-const QUESTIONS = [
-  {
-    q: "Which HTML element is used for JavaScript?",
-    choices: ["<js>", "<script>", "<javascript>", "<code>"],
-    answer: 1,
-  },
-  {
-    q: "Which CSS property controls layout in one dimension?",
-    choices: ["grid", "flex", "transform", "position"],
-    answer: 1,
-  },
-  {
-    q: "Which method converts a string to JSON object?",
-    choices: ["JSON.parse()", "JSON.stringify()", "JSON.toObj()", "parse()"],
-    answer: 0,
-  },
-  {
-    q: "Which HTML attribute is used to set inline styles?",
-    choices: ["class", "styles", "style", "css"],
-    answer: 2,
-  },
-  {
-    q: "Which operator is used for strict equality in JavaScript?",
-    choices: ["=", "==", "===", "!="],
-    answer: 2,
-  },
-];
+let QUESTIONS = []; // will load from JSON
+let currentIndex = 0;
+let timeLeft = 60;
+let timerId = null;
+let score = 0;
+let allowChoice = true;
 
+// Load questions from external JSON
+async function loadQuestions() {
+  try {
+    const response = await fetch("questions.json"); // ensure lowercase filename
+    if (!response.ok) throw new Error("Failed to load questions");
+    QUESTIONS = await response.json();
+  } catch (err) {
+    alert("Error loading questions: " + err.message);
+  }
+}
+
+// DOM references
 const startScreen = document.getElementById("startScreen");
 const quizScreen = document.getElementById("quizScreen");
 const endScreen = document.getElementById("endScreen");
@@ -52,16 +42,10 @@ const highScoresList = document.getElementById("highScoresList");
 const clearScoresBtn = document.getElementById("clearScores");
 const backBtn = document.getElementById("backBtn");
 
-let currentIndex = 0;
-let timeLeft = 60;
-let timerId = null;
-let score = 0;
-let allowChoice = true;
-
-// start quiz
+// Start quiz
 startBtn.addEventListener("click", () => {
   const t = parseInt(startTimeInput.value, 10);
-  timeLeft = isNaN(t) ? 60 : Math.max(10, Math.min(300, t));
+  timeLeft = isNaN(t) ? 60 : Math.max(10, Math.min(300, t)); // between 10–300 seconds
   timerEl.textContent = timeLeft;
   score = 0;
   currentIndex = 0;
@@ -73,7 +57,7 @@ startBtn.addEventListener("click", () => {
   renderQuestion();
 });
 
-// timer
+// Timer
 function startTimer() {
   if (timerId) clearInterval(timerId);
   timerId = setInterval(() => {
@@ -86,7 +70,7 @@ function startTimer() {
   }, 1000);
 }
 
-// render question
+// Render question
 function renderQuestion() {
   allowChoice = true;
   nextBtn.classList.add("hidden");
@@ -103,6 +87,7 @@ function renderQuestion() {
   });
 }
 
+// Handle choice click
 function onChoiceClick(e) {
   if (!allowChoice) return;
   allowChoice = false;
@@ -110,6 +95,7 @@ function onChoiceClick(e) {
   const correct = QUESTIONS[currentIndex].answer;
   const items = choicesList.querySelectorAll("li");
   items.forEach((li) => li.removeEventListener("click", onChoiceClick));
+
   if (selected === correct) {
     e.currentTarget.classList.add("correct");
     feedback.textContent = "Correct!";
@@ -118,28 +104,29 @@ function onChoiceClick(e) {
     e.currentTarget.classList.add("wrong");
     // highlight correct
     items.forEach((li) => {
-      if (parseInt(li.dataset.index, 10) === correct)
+      if (parseInt(li.dataset.index, 10) === correct) {
         li.classList.add("correct");
+      }
     });
     feedback.textContent = "Wrong! 10s penalty.";
     timeLeft = Math.max(0, timeLeft - 10);
     timerEl.textContent = timeLeft;
   }
+
   if (currentIndex < QUESTIONS.length - 1) {
     nextBtn.classList.remove("hidden");
   } else {
-    // finish
     setTimeout(endQuiz, 700);
   }
 }
 
-// next
+// Next button
 nextBtn.addEventListener("click", () => {
   currentIndex++;
   renderQuestion();
 });
 
-// end quiz
+// End quiz
 function endQuiz() {
   clearInterval(timerId);
   quizScreen.classList.add("hidden");
@@ -147,7 +134,7 @@ function endQuiz() {
   finalScoreEl.textContent = score;
 }
 
-// save score
+// Save score
 saveScoreBtn.addEventListener("click", () => {
   const initials = initialsInput.value.trim().substring(0, 3).toUpperCase();
   if (!initials) {
@@ -157,21 +144,20 @@ saveScoreBtn.addEventListener("click", () => {
   const entry = { initials, score, date: Date.now() };
   const list = JSON.parse(localStorage.getItem("quiz_highscores") || "[]");
   list.push(entry);
-  // sort desc and keep top 10
   list.sort((a, b) => b.score - a.score);
   localStorage.setItem("quiz_highscores", JSON.stringify(list.slice(0, 10)));
   initialsInput.value = "";
   showScores();
 });
 
-// view scores
+// View scores
 viewScoresBtn.addEventListener("click", showScores);
 backBtn.addEventListener("click", () => {
   scoresScreen.classList.add("hidden");
   startScreen.classList.remove("hidden");
 });
 
-// clear scores
+// Clear scores
 clearScoresBtn.addEventListener("click", () => {
   if (!confirm("Clear all saved high scores?")) return;
   localStorage.removeItem("quiz_highscores");
@@ -183,7 +169,7 @@ playAgainBtn.addEventListener("click", () => {
   startScreen.classList.remove("hidden");
 });
 
-// show scores helper
+// Show scores helper
 function showScores() {
   startScreen.classList.add("hidden");
   quizScreen.classList.add("hidden");
@@ -209,5 +195,8 @@ function renderHighScores() {
   });
 }
 
-// init: set timer display
-timerEl.textContent = startTimeInput.value;
+// Init
+timerEl.textContent = startTimeInput.value || 60;
+
+// Load questions at start
+loadQuestions();

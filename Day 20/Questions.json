@@ -1,0 +1,27 @@
+[
+  {
+    "q": "Which HTML element is used for JavaScript?",
+    "choices": ["<js>", "<script>", "<javascript>", "<code>"],
+    "answer": 1
+  },
+  {
+    "q": "Which CSS property controls layout in one dimension?",
+    "choices": ["grid", "flex", "transform", "position"],
+    "answer": 1
+  },
+  {
+    "q": "Which method converts a string to JSON object?",
+    "choices": ["JSON.parse()", "JSON.stringify()", "JSON.toObj()", "parse()"],
+    "answer": 0
+  },
+  {
+    "q": "Which HTML attribute is used to set inline styles?",
+    "choices": ["class", "styles", "style", "css"],
+    "answer": 2
+  },
+  {
+    "q": "Which operator is used for strict equality in JavaScript?",
+    "choices": ["=", "==", "===", "!="],
+    "answer": 2
+  }
+]
